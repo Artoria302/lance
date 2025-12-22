@@ -171,6 +171,7 @@ fn inner_create_scanner<'local>(
         let key_array = env.get_vec_f32_from_method(&java_obj, "getKey")?;
         let key = Float32Array::from(key_array);
         let k = env.get_int_as_usize_from_method(&java_obj, "getK")?;
+        scanner.prefilter(true);
         let _ = scanner.nearest(&column, &key, k);
 
         let minimum_nprobes = env.get_int_as_usize_from_method(&java_obj, "getMinimumNprobes")?;
